@@ -1,22 +1,30 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+
 var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 var lowerCaseletters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 var upperCaseletters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-var specialCharacters = ['!','@','#','$','%','&','*']
+var specialCharacters = ['!','@','#','$','%','&','*','(',')','-','_','+','=']
+
 function generatePassword () {
   var userChoice = prompt ("please select password legnth between 8 and 128 characters");
-  //prompt ("please select password legnth between 8 and 128 characters");
-  
+  var upperCaseletters = confirm("would you like to use uppercase?");
+  var lowerCaseletters = confirm("would you like to use lowercase?");
+  var numericCharacters = confirm("would you like to use numericCharacters");
+  var specialCharacters = confirm("would you like to use special characters");
   
   if (userChoice < 8 || userChoice > 128) {
     alert ("password doesnt meet criteria")
   } else {
-    prompt ("would you like numeric characters")
+    // prompt ("would you like numeric characters")
+  }
+  if (!Uc && !Lc && !Nm && !Sc) {
+    alert("please select at least one")
+    return "please select one character"
+    }
+    
+    
    
-    
-    
-   }
   
   // if (passwordLength < 8 || passwordLength > 128);
   // var passwordLength = 8;
