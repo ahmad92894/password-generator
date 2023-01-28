@@ -8,7 +8,7 @@ var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 var lowerCaseletters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 var upperCaseletters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 var specialCharacters = ['!','@','#','$','%','&','*','(',')','-','_','+','=']
-var availableOptions = [];
+
 
 
 // // this is how you get a known index
@@ -18,12 +18,12 @@ var availableOptions = [];
 
 
 // create a function that asks the user a bunch of questions and returns an obj w/ those answers
-function promptuser () {
+function generatePassword () {
   var userChoice = prompt ("please select password legnth between 8 and 128 characters");
-  var upperCaseletters = confirm("would you like to use uppercase?");
-  var lowerCaseletters = confirm("would you like to use lowercase?");
-  var numericCharacters = confirm("would you like to use numericCharacters");
-  var specialCharacters = confirm("would you like to use special characters");
+  var hasUpper = confirm("would you like to use uppercase?");
+  var hasLower = confirm("would you like to use lowercase?");
+  var hasNumeric = confirm("would you like to use numericCharacters");
+  var hasSpecial = confirm("would you like to use special characters");
   
   
   if (userChoice < 8 || userChoice > 128) {
@@ -31,40 +31,63 @@ function promptuser () {
   } else {
     // prompt ("would you like numeric characters")
   }
-  if (!upperCaseletters && !lowerCaseletters && !numericCharacters && !specialCharacters) {
+  if (!hasUpper && !hasLower && !hasNumeric && !hasSpecial) {
     alert("please select at least one")
     return "please select one character"
     }
     
     var userPassword = {
       length: userChoice,
-      hasNumeric: numericCharacters,
-      hasLower: lowerCaseletters,
-      hasUpper: upperCaseletters,
-      hasSpecial: specialCharacters,
+      hasNumeric: hasNumeric,
+      hasLower: hasLower,
+      hasUpper: hasUpper,
+      hasSpecial: hasSpecial
   }
-      console.log(userPassword);
+    var availableOptions = [];
+    var result = [];
+    if(userPassword.hasNumeric){
+      availableOptions = availableOptions.concat(numericCharacters);
+    }
+    if(userPassword.hasLower){
+      availableOptions = availableOptions.concat(lowerCaseletters);
+    }
+    if(userPassword.hasUpper){
+      availableOptions = availableOptions.concat(upperCaseletters);
+    }
+    if(userPassword.hasSpecial){
+      availableOptions = availableOptions.concat(specialCharacters);
+    }
+    for (var i = 0; i < userPassword.length; i++) {
+      var randomnumber = Math.floor(Math.random() * availableOptions.length);
+      result[i] = availableOptions[randomnumber];
+
+
+
+    }
+  
+    var Password = result.join("");
     
-   
+      // console.log(result);
+    
+    return Password;
   
-  // if (passwordLength < 8 || passwordLength > 128);
-  // var passwordLength = 8;
   
   
-  return userPassword
+  
+  // return userPassword
     
 
 }
-function generatePassword(userInfo){
+// function generatePassword(userInfo){
 
-}
+// }
 // Write password to the #password input
 function writePassword() {
   //alert("working");
-  var userresponse = promptuser();
+  // var userresponse = promptuser();
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  var options
+  // var options
 
   passwordText.value = password;
 
